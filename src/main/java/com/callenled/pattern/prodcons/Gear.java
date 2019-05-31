@@ -45,4 +45,13 @@ public abstract class Gear<T, R> implements Runnable {
      * @return
      */
     public abstract R gear(T t);
+
+    /**
+     * 插入队列
+     *
+     * @param r
+     */
+    public void push(R r) {
+        this.consumer.push(r);
+    }
 }
