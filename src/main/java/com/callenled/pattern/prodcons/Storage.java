@@ -38,14 +38,17 @@ public class Storage<T> {
      * 生产
      *
      * @param t 产品
+     * @param checkRepeated 是否重复
      */
-    public void push(T t) {
-        try {
-            this.queues.put(t);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void push(T t, boolean checkRepeated) {
+        if (!checkRepeated || !queues.contains(t)) {
+            try {
+                this.queues.put(t);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("生产者---队列大小：" + this.queues.size());
         }
-        System.out.println("生产者---队列大小：" + this.queues.size());
     }
 
     /**
@@ -67,6 +70,16 @@ public class Storage<T> {
         T t = this.queues.poll();
         System.out.println("消费者---队列大小：" + this.queues.size());
         return t;
+    }
+
+    /**
+     * 是否重复
+     *
+     * @param t
+     * @return
+     */
+    public boolean contains(T t) {
+        return queues.contains(t);
     }
 
     /**

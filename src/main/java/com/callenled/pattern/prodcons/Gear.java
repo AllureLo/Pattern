@@ -31,7 +31,7 @@ public abstract class Gear<T, R> implements Runnable {
             if (t != null) {
                 R r = gear(t);
                 if (r != null) {
-                    this.consumer.push(r);
+                    this.push(r);
                 }
             }
         }
@@ -52,6 +52,15 @@ public abstract class Gear<T, R> implements Runnable {
      * @param r
      */
     public void push(R r) {
-        this.consumer.push(r);
+        this.consumer.push(r, false);
+    }
+
+    /**
+     * 不重复插入队列
+     *
+     * @param r
+     */
+    public void push(R r, boolean checkRepeated) {
+        this.consumer.push(r, checkRepeated);
     }
 }

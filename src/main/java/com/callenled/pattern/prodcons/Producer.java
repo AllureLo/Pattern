@@ -24,11 +24,20 @@ public abstract class Producer<T> implements Runnable {
     public abstract void producer();
 
     /**
-     * 入队
+     * 插入队列
      *
      * @param t
      */
     public void push(T t) {
-        storage.push(t);
+        storage.push(t, false);
+    }
+
+    /**
+     * 插入队列
+     *
+     * @param t
+     */
+    public void push(T t, boolean checkRepeated) {
+        storage.push(t, checkRepeated);
     }
 }
