@@ -24,17 +24,17 @@ public class Demo {
                             push("i:" + i);
                         }
                     }
-                }, 3)
+                })
                 .setGear(new Gear<String, String>() {
                     @Override
                     public String gear(String s) {
-                        return "sssssss" + s;
+                        return "队列" + s;
                     }
                 }, 3)
                 .setConsumer(new Consumer<String>() {
                     @Override
                     public void consumer(String s) {
-
+                        System.out.println("结果:" + s);
                     }
                 }, 3)
                 .setEnd(new End() {
