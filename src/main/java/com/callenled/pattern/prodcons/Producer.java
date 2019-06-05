@@ -29,7 +29,9 @@ public abstract class Producer<T> implements Runnable {
      * @param t
      */
     public void push(T t) {
-        storage.push(t, false);
+        if (t != null) {
+            storage.push(t, false);
+        }
     }
 
     /**
@@ -38,6 +40,8 @@ public abstract class Producer<T> implements Runnable {
      * @param t
      */
     public void push(T t, boolean checkRepeated) {
-        storage.push(t, checkRepeated);
+        if (t != null) {
+            storage.push(t, checkRepeated);
+        }
     }
 }
