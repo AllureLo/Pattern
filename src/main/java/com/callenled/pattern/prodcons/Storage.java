@@ -41,13 +41,16 @@ public class Storage<T> {
      * @param checkRepeated 是否重复
      */
     public void push(T t, boolean checkRepeated) {
-        if (!checkRepeated || !queues.contains(t)) {
-            try {
+        try {
+            if (!checkRepeated || !queues.contains(t)) {
                 this.queues.put(t);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("生产者---队列大小：" + this.queues.size());
+            } else {
+                this.queues.put(t);
+                System.out.println("生产者---队列大小：" + this.queues.size());
             }
-            System.out.println("生产者---队列大小：" + this.queues.size());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
