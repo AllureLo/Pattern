@@ -45,11 +45,9 @@ public class Storage<T> {
             if (checkRepeated) {
                 if (!queues.contains(t)) {
                     this.queues.put(t);
-                    System.out.println("生产者---队列大小：" + this.queues.size());
                 }
             } else {
                 this.queues.put(t);
-                System.out.println("生产者---队列大小：" + this.queues.size());
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -72,9 +70,7 @@ public class Storage<T> {
             }
             return poll();
         }
-        T t = this.queues.poll();
-        System.out.println("消费者---队列大小：" + this.queues.size());
-        return t;
+        return this.queues.poll();
     }
 
     /**
