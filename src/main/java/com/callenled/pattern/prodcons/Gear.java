@@ -53,7 +53,7 @@ public abstract class Gear<T, R> implements Runnable {
      */
     public void push(R r) {
         if (r != null) {
-            this.consumer.push(r, false);
+            this.consumer.push(r, true);
         }
     }
 

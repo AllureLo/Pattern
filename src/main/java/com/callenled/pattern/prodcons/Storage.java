@@ -38,13 +38,15 @@ public class Storage<T> {
      * 生产
      *
      * @param t 产品
-     * @param checkRepeated 是否重复
+     * @param checkRepeated 是否去重
      */
     public void push(T t, boolean checkRepeated) {
         try {
-            if (!checkRepeated || !queues.contains(t)) {
-                this.queues.put(t);
-                System.out.println("生产者---队列大小：" + this.queues.size());
+            if (checkRepeated) {
+                if (!queues.contains(t)) {
+                    this.queues.put(t);
+                    System.out.println("生产者---队列大小：" + this.queues.size());
+                }
             } else {
                 this.queues.put(t);
                 System.out.println("生产者---队列大小：" + this.queues.size());

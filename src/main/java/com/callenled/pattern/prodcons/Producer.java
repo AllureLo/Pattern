@@ -30,7 +30,7 @@ public abstract class Producer<T> implements Runnable {
      */
     public void push(T t) {
         if (t != null) {
-            storage.push(t, false);
+            storage.push(t, true);
         }
     }
 
