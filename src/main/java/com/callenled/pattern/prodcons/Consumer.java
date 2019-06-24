@@ -23,7 +23,11 @@ public abstract class Consumer<T> implements Runnable {
         while (!this.storage.isStop()) {
             T t = this.storage.poll();
             if (t != null) {
-                this.consumer(t);
+                try {
+                    this.consumer(t);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         if (this.end != null) {
@@ -36,5 +40,5 @@ public abstract class Consumer<T> implements Runnable {
      *
      * @param t
      */
-    public abstract void consumer(T t);
+    public abstract void consumer(T t) throws Exception;
 }

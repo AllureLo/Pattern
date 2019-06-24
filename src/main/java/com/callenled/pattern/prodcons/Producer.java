@@ -14,14 +14,18 @@ public abstract class Producer<T> implements Runnable {
 
     @Override
     public void run() {
-        producer();
+        try {
+            producer();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         storage.setStop();
     }
 
     /**
      * 生产
      */
-    public abstract void producer();
+    public abstract void producer() throws Exception;
 
     /**
      * 插入队列

@@ -29,7 +29,12 @@ public abstract class Gear<T, R> implements Runnable {
         while (!this.producer.isStop()) {
             T t = this.producer.poll();
             if (t != null) {
-                R r = gear(t);
+                R r = null;
+                try {
+                    r = gear(t);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 if (r != null) {
                     this.push(r);
                 }
@@ -44,7 +49,7 @@ public abstract class Gear<T, R> implements Runnable {
      * @param t
      * @return
      */
-    public abstract R gear(T t);
+    public abstract R gear(T t) throws Exception;
 
     /**
      * 插入队列
